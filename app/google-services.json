@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1026035662721",
+    "firebase_url": "https://mymessage-28cce-default-rtdb.firebaseio.com",
+    "project_id": "mymessage-28cce",
+    "storage_bucket": "mymessage-28cce.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1026035662721:android:58e0b866edd4016b2fb280",
+        "android_client_info": {
+          "package_name": "com.zeynep.mymessageproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1026035662721-opm2133rg7uc7ndv6v1np5qb12nifabf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhck_rXXi9y8Wa2CXvAkBnqCuOYWrWED0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1026035662721-opm2133rg7uc7ndv6v1np5qb12nifabf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

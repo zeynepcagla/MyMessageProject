@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity"
+    android:orientation="vertical"
+    android:background="@drawable/loginbg"
+    android:padding="20dp"
+    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:layout_gravity="center_horizontal"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#FFF">
+
+    </TextView>
+
+    <LinearLayout
+        android:layout_marginTop="90dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <ImageView
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/logo"
+            android:layout_marginTop="15dp">
+
+        </ImageView>
+
+        <EditText
+            android:id="@+id/editTextUsername"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="65dp"
+            android:background="@drawable/edittextbg"
+            android:hint="Username"
+            android:paddingLeft="15dp"
+            android:inputType="textEmailAddress"
+            >
+
+        </EditText>
+
+
+        <EditText
+            android:id="@+id/editTextPassword"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/edittextbg"
+            android:hint="Password"
+            android:paddingLeft="15dp"
+            android:inputType="textPassword"
+            >
+
+        </EditText>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+
+           android:onClick="login"
+            android:id="@+id/buttonLogin"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:textAllCaps="false"
+            android:text="Login"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:background="@drawable/round_login_btn"
+            >
+
+        </androidx.appcompat.widget.AppCompatButton>
+        <androidx.appcompat.widget.AppCompatButton
+            android:onClick="register"
+            android:id="@+id/buttonRegister"
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:textAllCaps="false"
+            android:text="Preview"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:background="@drawable/round_register_btn">
+
+        </androidx.appcompat.widget.AppCompatButton>
+
+
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

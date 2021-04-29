@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:background="@drawable/loginbg"
+    android:padding="20dp"
+    android:gravity="center"
+    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HELLO CHAT "
+        android:textColor="#FFF"
+        android:textSize="30sp">
+
+    </TextView>
+
+    <LinearLayout
+        android:layout_marginTop="90dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <ImageView
+
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/logo"
+            android:layout_marginTop="35dp">
+            ></ImageView>
+        <androidx.appcompat.widget.AppCompatButton
+
+            android:onClick="login"
+            android:id="@+id/buttonLogin"
+            android:layout_marginTop="180dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:textAllCaps="false"
+            android:text="Login"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:background="@drawable/round_login_btn">
+
+        </androidx.appcompat.widget.AppCompatButton>
+
+        <androidx.appcompat.widget.AppCompatButton
+
+            android:onClick="register"
+            android:id="@+id/buttonRegister"
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:textAllCaps="false"
+            android:text="Register"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:background="@drawable/round_register_btn">
+
+        </androidx.appcompat.widget.AppCompatButton>
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

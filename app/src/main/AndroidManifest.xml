@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyMessageProject"
         android:usesCleartextTraffic="true">
-        <activity android:name=".AyarlarActivity"></activity>
+        <activity android:name=".MesajActivity"></activity>
+        <activity android:name=".AyarlarActivity" />
         <activity android:name=".ProfilimActivity" />
         <activity android:name=".HomeActivity" />
         <activity

@@ -1,20 +1,11 @@
 package com.zeynep.mymessageproject.Model;
 
 public class User {
-public String phone;
+    public String phone;
     public String name_surname;
     public String id;
     public String imageURL;
-
-    public User(){
-
-    }
-    public User(String phone, String name_surname, String id, String imageURL) {
-        this.phone = phone;
-        this.name_surname = name_surname;
-        this.id = id;
-        this.imageURL = imageURL;
-    }
+    public String durum;
 
     public String getPhone() {
         return phone;
@@ -47,4 +38,25 @@ public String phone;
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
     }
+
+    public String getDurum() {
+        return durum;
+    }
+
+    public void setDurum(String durum) {
+        this.durum = durum;
+    }
+
+    public User(String phone, String name_surname, String id, String imageURL, String durum) {
+        this.phone = phone;
+        this.name_surname = name_surname;
+        this.id = id;
+        this.imageURL = imageURL;
+        this.durum = durum;
+    }
+
+    public User(){
+
+    }
+
 }

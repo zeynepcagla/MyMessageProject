@@ -1,11 +1,5 @@
 package com.zeynep.mymessageproject;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
-import androidx.appcompat.widget.Toolbar;
-
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +7,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -28,10 +26,10 @@ public class RegisterActivity extends AppCompatActivity {
 Context context=this;
 DatabaseReference reference;
 AppCompatButton btnSave;
-FirebaseAuth mAuth;
+private FirebaseAuth mAuth;
 FirebaseUser fUser;
     ProgressBar mProgressBar;
-    EditText edtNameSurename,edtPhone,edtEmail,edtPassword,edtPasswordRetry;
+    private EditText edtNameSurename,edtPhone,edtEmail,edtPassword,edtPasswordRetry;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,54 +57,54 @@ FirebaseUser fUser;
                     Toast.makeText(context,"Adı Soyadı Alanı Boş Geçilemez ",Toast.LENGTH_LONG).show();
                     //önce mesaj verecez sonra imleci o kutucuğa gönderecez
                     edtNameSurename.requestFocus();
-                    return;
+
 
                 }
 
-                if(phone.trim().isEmpty()){
+               else if(phone.trim().isEmpty()){
                     Toast.makeText(context,"Telefon Alanı Boş Geçilemez ",Toast.LENGTH_LONG).show();
                     //önce mesaj verecez sonra imleci o kutucuğa gönderecez
                     edtPhone.requestFocus();
-                    return;
+
 
                 }
 
-                if(email.trim().isEmpty()){
+               else if(email.trim().isEmpty()){
                     Toast.makeText(context,"Email  Alanı Boş Geçilemez ",Toast.LENGTH_LONG).show();
                     //önce mesaj verecez sonra imleci o kutucuğa gönderecez
                     edtEmail.requestFocus();
-                    return;
+
 
                 }
 
-                if(password.trim().isEmpty()){
+             else if(password.trim().isEmpty()){
                     Toast.makeText(context,"Şifre Alanı Boş Geçilemez ",Toast.LENGTH_LONG).show();
                     //önce mesaj verecez sonra imleci o kutucuğa gönderecez
                     edtPassword.requestFocus();
-                    return;
+
 
                 }
 
 
-                if(passwordRetry.trim().isEmpty()){
+               else if(passwordRetry.trim().isEmpty()){
                     Toast.makeText(context,"Şifre Tekrarı Alanı Boş Geçilemez ",Toast.LENGTH_LONG).show();
                     //önce mesaj verecez sonra imleci o kutucuğa gönderecez
                     edtPasswordRetry.requestFocus();
-                    return;
 
                 }
 
 
 
                 //şifre ile şifre tekrarı uyuşmuyorsa hata varecez
-                if(!password.equals(passwordRetry)){
+            else if(!password.equals(passwordRetry)){
                     Toast.makeText(context,"Şifre İle Şifre Tekrarı Uyuşmuyor ",Toast.LENGTH_LONG).show();
                     //önce mesaj verecez sonra imleci o kutucuğa gönderecez
                     edtPasswordRetry.requestFocus();
-                    return;
 
                 }
-                register(nameSurename,phone,  email,  password);
+               else {
+                    register(nameSurename,phone,email,password);
+                }
             }
         });
 
@@ -127,6 +125,7 @@ FirebaseUser fUser;
             mMap.put("name_surname",nameSurname);
             mMap.put("phone",phone);
             mMap.put("imageURL","defalut");
+            mMap.put("durum","offline");
 
 
                        reference.setValue(mMap).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -135,6 +134,10 @@ FirebaseUser fUser;
                             if(task.isSuccessful()){
                                 mProgressBar.setVisibility(View.GONE);
                                 Toast.makeText(context,"Kullanıcı Eklendi ",Toast.LENGTH_LONG).show();
+                                Intent intent=new Intent(context, HomeActivity.class);
+                                //kullanıcı bir kere giriş yaptıktan sonra geri tuşuna bastığında bir daha logine yönlendirmez
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
                             }else{
                                 Toast.makeText(context,"Kullanıcı Eklerken Hata Oluştu ",Toast.LENGTH_LONG).show();
                             }
@@ -154,10 +157,9 @@ FirebaseUser fUser;
 });
 
     }
-
         public  void back(View view){
         Intent intent=new Intent(context,MainActivity.class);
         startActivity(intent);
-        finish();
+       finish();
     }
 }

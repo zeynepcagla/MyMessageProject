@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/whatsabBackground"
+    android:background="@drawable/whatsabbackground"
     tools:context=".MesajActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -30,6 +30,7 @@
             android:background="@drawable/profil"/>
 
             <TextView
+               android:id="@+id/kullaniciAdiMesaj"
                 android:layout_marginStart="5dp"
                 android:text="Ahmet Çiftçi"
                 android:textColor="@color/black"
@@ -51,7 +52,8 @@
         android:layout_height="wrap_content">
 
         <EditText
-          android:padding="8dp"
+          android:id="@+id/mesajGirdiAlani"
+            android:padding="8dp"
             android:layout_marginBottom="3dp"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="50sp"
@@ -59,17 +61,19 @@
             android:layout_height="45dp"
             android:hint="Mesajınızı Yazınız"
             android:textColor="@color/black"
-            android:background="@drawable/mesajCerceve"
+            android:background="@drawable/mesajcerceve"
             android:layout_centerVertical="true"
             />
             <ImageView
-               android:layout_marginEnd="55dp"
+               android:id="@+id/fotoEkleMesaj"
+                android:layout_marginEnd="55dp"
                 android:layout_centerVertical="true"
                android:layout_alignParentEnd="true"
                 android:background="@drawable/photo"
                 android:layout_width="35dp"
                 android:layout_height="35dp"/>
         <ImageView
+           android:id="@+id/gonderBtn"
             android:layout_marginEnd="10dp"
             android:layout_width="35dp"
             android:layout_height="35dp"

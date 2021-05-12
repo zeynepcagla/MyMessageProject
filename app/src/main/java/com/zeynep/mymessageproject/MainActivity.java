@@ -1,11 +1,11 @@
 package com.zeynep.mymessageproject;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -24,6 +24,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         auth=FirebaseAuth.getInstance();
         firebaseUser=auth.getCurrentUser();
+
+         // kullanıcı bir kere giriş yaptıktan sonra direk ana sayfa yönlendirilir
+        if(firebaseUser !=null) {
+            Intent intent = new Intent(MainActivity.this,HomeActivity.class);
+            //kullanıcı bir kere giriş yaptıktan sonra geri tuşuna bastığında bir daha logine yönlendirmez
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        } //if
+
 
     }
     public void login(View view){

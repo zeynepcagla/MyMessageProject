@@ -1,15 +1,14 @@
 package com.zeynep.mymessageproject;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -33,6 +32,14 @@ public class LoginActivity extends AppCompatActivity {
         editTextUsername=findViewById(R.id.editTextUsername);
         editTextPassword=findViewById(R.id.editTextPassword);
 
+      /* // kullanıcı bir kere giriş yaptıktan sonra direk ana sayfa yönlendirilir
+        if(mAuth !=null) {
+            Intent intent = new Intent(context, HomeActivity.class);
+
+            //kullanıcı bir kere giriş yaptıktan sonra geri tuşuna bastığında bir daha logine yönlendirmez
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        } //if*/
 
     }
     public  void login(View view){
@@ -40,14 +47,14 @@ public class LoginActivity extends AppCompatActivity {
         String password=editTextPassword.getText().toString().trim();
 
         if(username.isEmpty()){
-            Toast.makeText(context,"Kullanıcı Adı Alanı Boş Geçilemez " , Toast.LENGTH_LONG).show();
+            Toast.makeText(context,"Kullanıcı Adı Alanı Boş Geçilemez " , Toast.LENGTH_SHORT).show();
 
             editTextUsername.requestFocus();
             return;
         }
 
-        if(password.isEmpty()){
-            Toast.makeText(context,"Şifre Alanı Boş Geçilemez " , Toast.LENGTH_LONG).show();
+        else if(password.isEmpty()){
+            Toast.makeText(context,"Şifre Alanı Boş Geçilemez " , Toast.LENGTH_SHORT).show();
             editTextPassword.requestFocus();
             return;
     }
@@ -60,8 +67,10 @@ public class LoginActivity extends AppCompatActivity {
                 if(task.isSuccessful()){
 
                     mUser=mAuth.getCurrentUser();
-                Intent intent=new Intent(context,MessageActivity.class);
+                Intent intent=new Intent(context, HomeActivity.class);
                 intent.putExtra("uid",mUser.getUid());
+                //kullanıcı bir kere giriş yaptıktan sonra geri tuşuna bastığında bir daha logine yönlendirmez
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
 
                 }else{
@@ -75,16 +84,10 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
-
-
 }
 public  void  register(View view){
 
-    Intent intent=new Intent(context,MainActivity.class);
+    Intent intent=new Intent(context,HomeActivity.class);
     startActivity(intent);
     finish();
 }

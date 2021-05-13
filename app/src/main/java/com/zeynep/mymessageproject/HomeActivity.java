@@ -17,6 +17,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.zeynep.mymessageproject.Fragments.AramaFragment;
 import com.zeynep.mymessageproject.Fragments.HomeFragment;
+import com.zeynep.mymessageproject.Fragments.MesajFragment;
 
 import java.util.HashMap;
 
@@ -86,6 +87,18 @@ public class HomeActivity extends AppCompatActivity {
 
                         case R.id.arama:
                             fragment = new AramaFragment();
+                            break;
+
+                        case R.id.ekle:
+
+                            break;
+                        case R.id.profil:
+                            Intent intent =new Intent(HomeActivity.this,ProfilimActivity.class);
+                            startActivity(intent);
+                            break;
+
+                        case R.id.mesajlar:
+                            fragment = new MesajFragment();
                             break;
                     }
                     if (fragment !=null) {

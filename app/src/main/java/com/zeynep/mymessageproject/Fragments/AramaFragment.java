@@ -31,7 +31,7 @@ import java.util.List;
 public class AramaFragment extends Fragment {
     private RecyclerView recyclerView;
     private UserAdapter kullaniciAdapter;
-    private List<User> mKullanicilar;
+    private List<User> mKullanicilar =new ArrayList<>();
     private EditText aramaBar;
 
     private FirebaseUser mevcutkullanici = FirebaseAuth.getInstance().getCurrentUser();
@@ -46,7 +46,7 @@ public class AramaFragment extends Fragment {
         recyclerView=view.findViewById(R.id.reycler_arama);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        mKullanicilar=new ArrayList<>();
+
         kullaniciAdapter =  new UserAdapter(getContext(),mKullanicilar,true);
         recyclerView.setAdapter((kullaniciAdapter));
 

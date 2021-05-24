@@ -20,8 +20,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:background="@drawable/profil"
-            android:layout_marginLeft="5dp"
-            />
+            android:layout_marginLeft="5dp"/>
 
         <TextView
             android:id="@+id/kullaniciAdi"
@@ -32,7 +31,7 @@
             android:layout_marginTop="5dp"
             android:text="Kullanıcı Adı"
             android:textColor="@color/black"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
         <ImageView
             android:layout_marginStart="200dp"
@@ -41,8 +40,7 @@
             android:layout_width="38dp"
             android:layout_height="38dp"
             android:background="@drawable/mesaj"
-            android:layout_marginLeft="5dp"
-            />
+            android:layout_marginLeft="5dp"/>
 
 
     </LinearLayout>

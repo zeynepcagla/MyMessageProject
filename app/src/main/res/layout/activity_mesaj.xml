@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/whatsab"
+    tools:context=".MesajActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:navigationIcon="@color/transparan"
+        android:background="@color/white"
+        >
+
+    <ImageButton
+        android:id="@+id/geritusu"
+        android:layout_width="30sp"
+        android:layout_height="30sp"
+        android:background="@drawable/geri"
+        />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+          android:layout_marginStart="25dp"
+           android:id="@+id/profilresim"
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            android:background="@drawable/profil"/>
+
+            <TextView
+               android:id="@+id/kullaniciAdiMesaj"
+                android:layout_marginStart="5dp"
+                android:text="Ahmet Çiftçi"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+    </androidx.appcompat.widget.Toolbar>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_above="@+id/relative"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/toolbar" />
+    <RelativeLayout
+         android:layout_alignParentBottom="true"
+        android:id="@+id/relative"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+          android:id="@+id/mesajGirdiAlani"
+            android:padding="8dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="50sp"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:hint="Mesajınızı Yazınız"
+            android:textColor="@color/black"
+            android:background="@drawable/mesajcerceve"
+            android:layout_centerVertical="true"
+            />
+            <ImageView
+               android:id="@+id/fotoEkleMesaj"
+                android:layout_marginEnd="55dp"
+                android:layout_centerVertical="true"
+               android:layout_alignParentEnd="true"
+                android:background="@drawable/photo"
+                android:layout_width="35dp"
+                android:layout_height="35dp"/>
+        <ImageView
+           android:id="@+id/gonderBtn"
+            android:layout_marginEnd="10dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="@drawable/gonder"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            />
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

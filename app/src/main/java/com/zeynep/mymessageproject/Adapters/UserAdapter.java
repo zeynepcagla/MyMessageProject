@@ -113,10 +113,15 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
+
         return  mKullanicilar.size();
     }
+
+
+
 private void sonGonderilenMesaj(final String id, TextView sonmesaj){
         sonMesajim = "default";
+
 
     FirebaseDatabase.getInstance().getReference("Mesajlar").child(firebaseUser.getUid())
             .addValueEventListener(new ValueEventListener() {

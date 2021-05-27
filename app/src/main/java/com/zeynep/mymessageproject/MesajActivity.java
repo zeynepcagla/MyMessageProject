@@ -25,7 +25,11 @@ import com.google.firebase.database.ValueEventListener;
 import com.zeynep.mymessageproject.Model.Chat;
 import com.zeynep.mymessageproject.Model.User;
 
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -40,6 +44,7 @@ public class MesajActivity extends AppCompatActivity {
     private ImageView fotoekle,gonder;
     private Intent intent;
     private FirebaseUser firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
+    private StringBuilder saat,tarih;
 
 
 
@@ -54,6 +59,17 @@ public class MesajActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mesaj);
+        saat=new StringBuilder();
+        tarih=new StringBuilder();
+        Date bugun=Calendar.getInstance().getTime();
+        SimpleDateFormat formatte=new SimpleDateFormat("dd.MM.yyyy");
+        String date=formatte.format(bugun);
+        tarih.append(date);
+
+        Date saattoday=Calendar.getInstance().getTime();
+        SimpleDateFormat clockformatte=new SimpleDateFormat("hh.mm");
+        String saatdate=clockformatte.format(saattoday);
+        saat.append(saatdate);
 
 
         recyclerView=findViewById(R.id.mesajrecycler);
@@ -157,6 +173,8 @@ public class MesajActivity extends AppCompatActivity {
         hashMap.put("resim", "");
         hashMap.put("goruldu", false);
 
+        hashMap.put("saat", saat.toString());
+        hashMap.put("tarih", tarih.toString());
         FirebaseDatabase.getInstance().getReference().child("Mesajlar").child(firebaseUser.getUid()).push().setValue(hashMap);
 
 
@@ -170,6 +188,11 @@ public class MesajActivity extends AppCompatActivity {
         hashMap.put("mesaj", mesaj);
         hashMap.put("resim", "");
         hashMap.put("goruldu", false);
+
+        hashMap.put("saat", saat.toString());
+        hashMap.put("tarih", tarih.toString());
+
+
 
         FirebaseDatabase.getInstance().getReference().child("Mesajlar").child(alici).push().setValue(hashMap);
 

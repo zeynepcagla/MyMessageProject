@@ -6,13 +6,17 @@ public class Chat {
     String mesaj;
     String resim;
     Boolean goruldu;
+    String saat;
+    String tarih;
 
-    public Chat(String alici, String gonderen, String mesaj, String resim, Boolean goruldu) {
+    public Chat(String alici, String gonderen, String mesaj, String resim, Boolean goruldu, String saat, String tarih) {
         this.alici = alici;
         this.gonderen = gonderen;
         this.mesaj = mesaj;
         this.resim = resim;
         this.goruldu = goruldu;
+        this.saat = saat;
+        this.tarih = tarih;
     }
 
     public String getAlici() {
@@ -53,6 +57,22 @@ public class Chat {
 
     public void setGoruldu(Boolean goruldu) {
         this.goruldu = goruldu;
+    }
+
+    public String getSaat() {
+        return saat;
+    }
+
+    public void setSaat(String saat) {
+        this.saat = saat;
+    }
+
+    public String getTarih() {
+        return tarih;
+    }
+
+    public void setTarih(String tarih) {
+        this.tarih = tarih;
     }
 
     public Chat() {

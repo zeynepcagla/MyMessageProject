@@ -62,7 +62,7 @@ public class MesajActivity extends AppCompatActivity {
         saat=new StringBuilder();
         tarih=new StringBuilder();
         Date bugun=Calendar.getInstance().getTime();
-        SimpleDateFormat formatte=new SimpleDateFormat("dd.mm.yyyy");
+        SimpleDateFormat formatte=new SimpleDateFormat("dd.MM.yyyy");
         String date=formatte.format(bugun);
         tarih.append(date);
 

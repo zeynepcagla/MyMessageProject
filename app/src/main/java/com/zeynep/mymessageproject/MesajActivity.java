@@ -38,6 +38,7 @@ import com.zeynep.mymessageproject.Model.Chat;
 import com.zeynep.mymessageproject.Model.User;
 
 
+import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -263,21 +264,20 @@ public class MesajActivity extends AppCompatActivity {
         reference.removeEventListener(value);
     }
 
-    private  String  dosyaUzantısıAl(Uri uri){
         ContentResolver resolver=getContentResolver();
         MimeTypeMap mime=MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(resolver.getType(uri));
     }
 
     private void resimYukle(){
-        resimyukleyolu= FirebaseStorage.getInstance().getReference("Mesaj Resimleri");
-        if(resimUri!=null){
-            final StorageReference dosyayolu=resimyukleyolu.child(System.currentTimeMillis()+"."+dosyaUzantısıAl(resimUri));
+        if(resimUri !=null){
+            final StorageReference dosyayolu=resimyukleyolu.child(System.currentTimeMillis()
+                    +"."+dosyaUzantisiAl(resimUri));
             yuklegorev=dosyayolu.putFile(resimUri);
             yuklegorev.continueWithTask(new Continuation() {
                 @Override
                 public Object then(@NonNull Task task) throws Exception {
-                    if(task.isSuccessful()){
+                    if(!task.isSuccessful()){
                         throw  task.getException();
                     }
                     return dosyayolu.getDownloadUrl();
@@ -314,10 +314,10 @@ public class MesajActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode== CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && requestCode==RESULT_OK){
             CropImage.ActivityResult result=CropImage.getActivityResult(data);
             resimUri=result.getUri();
             resimYukle();
+
 
 
         }

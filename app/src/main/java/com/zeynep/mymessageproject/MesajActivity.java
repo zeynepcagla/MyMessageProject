@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DatabaseReference;
 import com.zeynep.mymessageproject.Adapters.ChatAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -45,6 +46,9 @@ public class MesajActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ChatAdapter userAdapter;
     private List<Chat> mMesaj = new ArrayList<>();
+
+    private  ValueEventListener value;
+    DatabaseReference reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -151,6 +155,7 @@ public class MesajActivity extends AppCompatActivity {
         hashMap.put("alici", alici);
         hashMap.put("mesaj", mesaj);
         hashMap.put("resim", "");
+        hashMap.put("goruldu", false);
 
         FirebaseDatabase.getInstance().getReference().child("Mesajlar").child(firebaseUser.getUid()).push().setValue(hashMap);
 
@@ -164,11 +169,51 @@ public class MesajActivity extends AppCompatActivity {
         hashMap.put("alici", alici);
         hashMap.put("mesaj", mesaj);
         hashMap.put("resim", "");
+        hashMap.put("goruldu", false);
 
         FirebaseDatabase.getInstance().getReference().child("Mesajlar").child(alici).push().setValue(hashMap);
 
 
     }
+
+    private void goruldu(){
+        intent = getIntent();
+        final String userId = intent.getStringExtra("userId");
+
+        reference= FirebaseDatabase.getInstance().getReference("Mesajlar").child(userId);
+        value = reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+            for(DataSnapshot snapshot1: snapshot.getChildren()){
+                Chat chat = snapshot1.getValue(Chat.class);
+                if (chat.getAlici().equals(firebaseUser.getUid())){
+                    HashMap<String, Object> hashMap = new HashMap();
+                    hashMap.put("goruldu", true);
+                    snapshot1.getRef().updateChildren(hashMap);
+                }
+            }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        goruldu();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        reference.removeEventListener(value);
+    }
+
 }//end
 
 

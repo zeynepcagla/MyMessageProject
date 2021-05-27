@@ -21,6 +21,18 @@
             android:padding="1dp"
             android:gravity="center">
 
+            <ImageView
+                android:id="@+id/goruldutik"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+               />
+            <ImageView
+                android:id="@+id/iletilditik"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+               />
             <TextView
                 android:id="@+id/mesaj"
                 android:textColor="@color/black"
@@ -28,9 +40,9 @@
                 android:layout_height="wrap_content"
 
                 android:text="Merhaba"
-                android:layout_marginStart="5dp"
+                android:layout_marginStart="3dp"
                 android:textSize="16sp"
-                android:layout_marginTop="5dp"/>
+                android:layout_marginTop="2dp"/>
 
             <TextView
                 android:id="@+id/goruldu"

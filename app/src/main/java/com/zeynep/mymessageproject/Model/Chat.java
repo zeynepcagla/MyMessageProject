@@ -5,6 +5,15 @@ public class Chat {
     String gonderen;
     String mesaj;
     String resim;
+    Boolean goruldu;
+
+    public Chat(String alici, String gonderen, String mesaj, String resim, Boolean goruldu) {
+        this.alici = alici;
+        this.gonderen = gonderen;
+        this.mesaj = mesaj;
+        this.resim = resim;
+        this.goruldu = goruldu;
+    }
 
     public String getAlici() {
         return alici;
@@ -38,11 +47,12 @@ public class Chat {
         this.resim = resim;
     }
 
-    public Chat(String alici, String gonderen, String mesaj, String resim) {
-        this.alici = alici;
-        this.gonderen = gonderen;
-        this.mesaj = mesaj;
-        this.resim = resim;
+    public Boolean getGoruldu() {
+        return goruldu;
+    }
+
+    public void setGoruldu(Boolean goruldu) {
+        this.goruldu = goruldu;
     }
 
     public Chat() {

@@ -61,6 +61,24 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder,final int position) {
         final Chat chat = mMesaj.get(position);
 
+      if (position == mMesaj.size()-1){
+          if (chat.getGoruldu()){
+              holder.goruldutik.setVisibility(View.VISIBLE);
+              holder.iletilditik.setVisibility(View.GONE);
+
+          }else
+          {
+              holder.iletilditik.setVisibility(View.VISIBLE);
+              holder.goruldutik.setVisibility(View.GONE);
+
+
+          }
+
+      }// if end
+      else{
+          holder.goruldutik.setVisibility(View.GONE);
+
+      }
         holder.mesaj.setText(chat.getMesaj());
 
     }
@@ -73,6 +91,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView profilresim,mesajgonder;
+        public ImageView goruldutik,iletilditik;
         public TextView mesaj,goruldu,tarih;
 
 
@@ -80,8 +99,9 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
             super(itemView);
 
             mesaj = itemView .findViewById(R.id.mesaj);
-            goruldu = itemView .findViewById(R.id.goruldu);
             tarih = itemView .findViewById(R.id.tarih);
+            goruldutik = itemView .findViewById(R.id.goruldutik);
+            iletilditik = itemView .findViewById(R.id.iletilditik);
 
 
         }

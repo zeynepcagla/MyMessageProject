@@ -20,15 +20,27 @@
     android:padding="1dp"
     android:gravity="center">
 
-    <TextView
-        android:id="@+id/mesaj"
-        android:textColor="@color/black"
+    <ImageView
+        android:id="@+id/goruldutik"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Merhaba"
-        android:layout_marginStart="5dp"
-        android:textSize="16sp"
-        android:layout_marginTop="5dp"/>
+        android:visibility="gone"
+        android:background="@drawable/goruldu"/>
+    <ImageView
+       android:id="@+id/iletilditik"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:background="@drawable/iletildi"/>
+    <TextView
+        android:id="@+id/mesaj"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="2dp"
+        android:text="Merhaba Nasılsınız"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
 
     <TextView
        android:id="@+id/goruldu"

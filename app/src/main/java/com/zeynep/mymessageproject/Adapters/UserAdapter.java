@@ -15,7 +15,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.zeynep.mymessageproject.MesajActivity;
+import com.zeynep.mymessageproject.Model.Chat;
 import com.zeynep.mymessageproject.Model.User;
 import com.zeynep.mymessageproject.R;
 
@@ -28,6 +33,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     private Context mcontext;
     private FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
     private Boolean isChat;
+    private String  sonMesajim;
+
+
 
     public UserAdapter(Context mcontext, List<User> mKullanicilar, boolean isChat) {
         this.mKullanicilar=mKullanicilar;
@@ -48,6 +56,14 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     //okuma işlemi
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
       final  User kullanici=mKullanicilar.get(position);
+
+      if (isChat){
+          sonGonderilenMesaj(kullanici.getId(),holder.sonmesaj);
+      }else {
+          holder.sonmesaj.setVisibility(View.GONE);
+      }
+
+
         if (isChat){
             if (kullanici.getDurum().equals("online")){
                 holder.online.setVisibility(View.VISIBLE);
@@ -62,6 +78,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             holder.online.setVisibility(View.GONE);
             holder.offline.setVisibility(View.GONE);
             holder.mesajGonder.setVisibility(View.GONE);
+            holder.sonmesaj.setVisibility(View.GONE);
+
 
         }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -97,11 +115,44 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     public int getItemCount() {
         return  mKullanicilar.size();
     }
+private void sonGonderilenMesaj(final String id, TextView sonmesaj){
+        sonMesajim = "default";
 
+    FirebaseDatabase.getInstance().getReference("Mesajlar").child(firebaseUser.getUid())
+            .addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot datasnapshot) {
+                    for (DataSnapshot snapshot1 : datasnapshot.getChildren()){
+                        Chat chat = snapshot1.getValue(Chat.class);
+
+                        if (chat.getAlici().equals(firebaseUser.getUid()) && chat.getGonderen().equals(id) ||
+                            chat.getAlici().equals(id) && chat.getGonderen().equals(firebaseUser.getUid())){
+                            sonMesajim = chat.getMesaj();
+                        }
+                    }
+                    switch (sonMesajim){
+                        case "default":
+                            sonmesaj.setText("Bir Merhaba Söyle");
+                            break;
+                        default:
+                            sonmesaj.setText(sonMesajim);
+                            break;
+                    }
+                    sonMesajim = "default";
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+}
     public class ViewHolder extends RecyclerView.ViewHolder  {
 
         public ImageView profilresim,mesajGonder;
-        public TextView kullaniciAdi;
+        public TextView kullaniciAdi,sonmesaj;
         public CircleImageView online,offline;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -110,7 +161,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     online=itemView.findViewById(R.id.online);
     offline=itemView.findViewById(R.id.offline);
     mesajGonder=itemView.findViewById(R.id.mesajGonder);
-
+    sonmesaj=itemView.findViewById(R.id.sonmesaj);
         }
     }
 }

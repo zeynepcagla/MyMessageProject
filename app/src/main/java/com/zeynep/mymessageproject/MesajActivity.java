@@ -25,7 +25,10 @@ import com.google.firebase.database.ValueEventListener;
 import com.zeynep.mymessageproject.Model.Chat;
 import com.zeynep.mymessageproject.Model.User;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -41,7 +44,7 @@ public class MesajActivity extends AppCompatActivity {
     private Intent intent;
     private FirebaseUser firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
 
-
+    private  StringBuilder saat,tarih;
 
     private RecyclerView recyclerView;
     private ChatAdapter userAdapter;
@@ -54,6 +57,18 @@ public class MesajActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mesaj);
+        saat=new StringBuilder();
+        tarih= new StringBuilder();
+
+        Date bugun = Calendar.getInstance().getTime();
+        SimpleDateFormat formatte = new SimpleDateFormat("dd.MM.yyyy");
+        String date = formatte.format(bugun);
+        tarih.append(date);
+
+        Date saatzaman = Calendar.getInstance().getTime();
+        SimpleDateFormat saatformat = new SimpleDateFormat("hh:mm");
+        String saati = saatformat.format(saatzaman);
+        saat.append(saati);
 
 
         recyclerView=findViewById(R.id.mesajrecycler);
@@ -156,6 +171,9 @@ public class MesajActivity extends AppCompatActivity {
         hashMap.put("mesaj", mesaj);
         hashMap.put("resim", "");
         hashMap.put("goruldu", false);
+        hashMap.put("saat", saat.toString());
+        hashMap.put("tarih",tarih.toString());
+
 
         FirebaseDatabase.getInstance().getReference().child("Mesajlar").child(firebaseUser.getUid()).push().setValue(hashMap);
 
@@ -170,6 +188,8 @@ public class MesajActivity extends AppCompatActivity {
         hashMap.put("mesaj", mesaj);
         hashMap.put("resim", "");
         hashMap.put("goruldu", false);
+        hashMap.put("saat", saat.toString());
+        hashMap.put("tarih",tarih.toString());
 
         FirebaseDatabase.getInstance().getReference().child("Mesajlar").child(alici).push().setValue(hashMap);
 

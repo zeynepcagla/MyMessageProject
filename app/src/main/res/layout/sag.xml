@@ -6,7 +6,8 @@
     android:layout_gravity="end">
 
     <androidx.cardview.widget.CardView
-      android:layout_marginTop="5dp"
+      android:id="@+id/card"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="5dp"
         android:layout_alignParentEnd="true"
         android:layout_width="wrap_content"
@@ -52,13 +53,27 @@
         android:layout_marginTop="5dp"/>
 
     <TextView
-        android:id="@+id/tarih"
+        android:id="@+id/saat"
+        android:textColor="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="12.05.2021"
+        android:text="12.05 pm"
         android:layout_marginStart="5dp"
         android:textSize="10sp"
         android:layout_marginTop="5dp"/>
 </LinearLayout>
     </androidx.cardview.widget.CardView>
+    <TextView
+
+        android:layout_toStartOf="@+id/card"
+        android:id="@+id/tarih"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="05/06/2020"
+        android:layout_marginStart="5dp"
+        android:padding="3dp"
+        android:textSize="10dp"
+        android:layout_marginTop="20sp"/>
+
+
 </RelativeLayout>

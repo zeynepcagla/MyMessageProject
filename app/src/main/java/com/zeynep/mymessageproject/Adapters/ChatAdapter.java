@@ -80,6 +80,8 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
 
       }
         holder.mesaj.setText(chat.getMesaj());
+        holder.saat.setText(chat.getSaat());
+        holder.tarih.setText(chat.getTarih());
 
     }
 
@@ -92,7 +94,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView profilresim,mesajgonder;
         public ImageView goruldutik,iletilditik;
-        public TextView mesaj,goruldu,tarih;
+        public TextView mesaj,saat,tarih;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -100,6 +102,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
 
             mesaj = itemView .findViewById(R.id.mesaj);
             tarih = itemView .findViewById(R.id.tarih);
+            saat = itemView .findViewById(R.id.saat);
             goruldutik = itemView .findViewById(R.id.goruldutik);
             iletilditik = itemView .findViewById(R.id.iletilditik);
 

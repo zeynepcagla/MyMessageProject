@@ -41,7 +41,7 @@ public class HomeActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(navigationliste);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentacilacagicerceve,new HomeFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentacilacagicerceve,new AramaFragment()).commit();
 
     }
     //üst Açılır Menu
@@ -81,12 +81,12 @@ public class HomeActivity extends AppCompatActivity {
 
                     switch (item.getItemId()) {
 
-                        case R.id.home:
-                            fragment = new HomeFragment();
-                            break;
-
                         case R.id.arama:
                             fragment = new AramaFragment();
+                            break;
+
+                        case R.id.home:
+                            fragment = new HomeFragment();
                             break;
 
                         case R.id.ekle:

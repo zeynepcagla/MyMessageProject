@@ -7,6 +7,14 @@ public class User {
     public String imageURL;
     public String durum;
 
+    public User(String phone, String name_surname, String id, String imageURL, String durum) {
+        this.phone = phone;
+        this.name_surname = name_surname;
+        this.id = id;
+        this.imageURL = imageURL;
+        this.durum = durum;
+    }
+
     public String getPhone() {
         return phone;
     }
@@ -44,14 +52,6 @@ public class User {
     }
 
     public void setDurum(String durum) {
-        this.durum = durum;
-    }
-
-    public User(String phone, String name_surname, String id, String imageURL, String durum) {
-        this.phone = phone;
-        this.name_surname = name_surname;
-        this.id = id;
-        this.imageURL = imageURL;
         this.durum = durum;
     }
 

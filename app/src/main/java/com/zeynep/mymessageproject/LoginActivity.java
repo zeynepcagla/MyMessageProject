@@ -57,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(context,"Şifre Alanı Boş Geçilemez " , Toast.LENGTH_SHORT).show();
             editTextPassword.requestFocus();
             return;
-    }
+        }
 
         mAuth.signInWithEmailAndPassword(username,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -67,11 +67,11 @@ public class LoginActivity extends AppCompatActivity {
                 if(task.isSuccessful()){
 
                     mUser=mAuth.getCurrentUser();
-                Intent intent=new Intent(context, HomeActivity.class);
-                intent.putExtra("uid",mUser.getUid());
-                //kullanıcı bir kere giriş yaptıktan sonra geri tuşuna bastığında bir daha logine yönlendirmez
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+                    Intent intent=new Intent(context, HomeActivity.class);
+                    intent.putExtra("uid",mUser.getUid());
+                    //kullanıcı bir kere giriş yaptıktan sonra geri tuşuna bastığında bir daha logine yönlendirmez
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
 
                 }else{
 
@@ -84,12 +84,12 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-}
-public  void  register(View view){
+    }
+    public  void  register(View view){
 
-    Intent intent=new Intent(context,MainActivity.class);
-    startActivity(intent);
-    finish();
-}
+        Intent intent=new Intent(context,MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
 
 }

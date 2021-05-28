@@ -23,11 +23,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 
 public class RegisterActivity extends AppCompatActivity {
-Context context=this;
-DatabaseReference reference;
-AppCompatButton btnSave;
-private FirebaseAuth mAuth;
-FirebaseUser fUser;
+    Context context=this;
+    DatabaseReference reference;
+    AppCompatButton btnSave;
+    private FirebaseAuth mAuth;
+    FirebaseUser fUser;
     ProgressBar mProgressBar;
     private EditText edtNameSurename,edtPhone,edtEmail,edtPassword,edtPasswordRetry;
 
@@ -61,7 +61,7 @@ FirebaseUser fUser;
 
                 }
 
-               else if(phone.trim().isEmpty()){
+                else if(phone.trim().isEmpty()){
                     Toast.makeText(context,"Telefon Alanı Boş Geçilemez ",Toast.LENGTH_LONG).show();
                     //önce mesaj verecez sonra imleci o kutucuğa gönderecez
                     edtPhone.requestFocus();
@@ -69,7 +69,7 @@ FirebaseUser fUser;
 
                 }
 
-               else if(email.trim().isEmpty()){
+                else if(email.trim().isEmpty()){
                     Toast.makeText(context,"Email  Alanı Boş Geçilemez ",Toast.LENGTH_LONG).show();
                     //önce mesaj verecez sonra imleci o kutucuğa gönderecez
                     edtEmail.requestFocus();
@@ -77,7 +77,7 @@ FirebaseUser fUser;
 
                 }
 
-             else if(password.trim().isEmpty()){
+                else if(password.trim().isEmpty()){
                     Toast.makeText(context,"Şifre Alanı Boş Geçilemez ",Toast.LENGTH_LONG).show();
                     //önce mesaj verecez sonra imleci o kutucuğa gönderecez
                     edtPassword.requestFocus();
@@ -86,7 +86,7 @@ FirebaseUser fUser;
                 }
 
 
-               else if(passwordRetry.trim().isEmpty()){
+                else if(passwordRetry.trim().isEmpty()){
                     Toast.makeText(context,"Şifre Tekrarı Alanı Boş Geçilemez ",Toast.LENGTH_LONG).show();
                     //önce mesaj verecez sonra imleci o kutucuğa gönderecez
                     edtPasswordRetry.requestFocus();
@@ -96,13 +96,13 @@ FirebaseUser fUser;
 
 
                 //şifre ile şifre tekrarı uyuşmuyorsa hata varecez
-            else if(!password.equals(passwordRetry)){
+                else if(!password.equals(passwordRetry)){
                     Toast.makeText(context,"Şifre İle Şifre Tekrarı Uyuşmuyor ",Toast.LENGTH_LONG).show();
                     //önce mesaj verecez sonra imleci o kutucuğa gönderecez
                     edtPasswordRetry.requestFocus();
 
                 }
-               else {
+                else {
                     register(nameSurename,phone,email,password);
                 }
             }
@@ -112,23 +112,23 @@ FirebaseUser fUser;
     }
 
     public void register(String nameSurname,String phone, String email, String password) {
-    mProgressBar.setVisibility(View.VISIBLE);
-    mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-    @Override
-    public void onComplete(@NonNull Task<AuthResult> task) {
-        if(task.isSuccessful()){
-            fUser=mAuth.getCurrentUser();
-            String uid=fUser.getUid();
-             reference = FirebaseDatabase.getInstance().getReference("Users").child(uid);
-            HashMap<String, String> mMap=  new HashMap<>();
-            mMap.put("id",uid);
-            mMap.put("name_surname",nameSurname);
-            mMap.put("phone",phone);
-            mMap.put("imageURL","defalut");
-            mMap.put("durum","offline");
+        mProgressBar.setVisibility(View.VISIBLE);
+        mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+                    fUser=mAuth.getCurrentUser();
+                    String uid=fUser.getUid();
+                    reference = FirebaseDatabase.getInstance().getReference("Users").child(uid);
+                    HashMap<String, String> mMap=  new HashMap<>();
+                    mMap.put("id",uid);
+                    mMap.put("name_surname",nameSurname);
+                    mMap.put("phone",phone);
+                    mMap.put("imageURL","defalut");
+                    mMap.put("durum","offline");
 
 
-                       reference.setValue(mMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    reference.setValue(mMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){
@@ -146,20 +146,20 @@ FirebaseUser fUser;
                     });
 
 
-        }
-        else{
+                }
+                else{
 
-            Toast.makeText(context,"Sorun Oluştu ",Toast.LENGTH_LONG).show();
-        }
+                    Toast.makeText(context,"Sorun Oluştu ",Toast.LENGTH_LONG).show();
+                }
 
+
+            }
+        });
 
     }
-});
-
-    }
-        public  void back(View view){
+    public  void back(View view){
         Intent intent=new Intent(context,MainActivity.class);
         startActivity(intent);
-       finish();
+        finish();
     }
 }

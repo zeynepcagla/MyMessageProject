@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         auth=FirebaseAuth.getInstance();
         firebaseUser=auth.getCurrentUser();
 
-         // kullanıcı bir kere giriş yaptıktan sonra direk ana sayfa yönlendirilir
+        // kullanıcı bir kere giriş yaptıktan sonra direk ana sayfa yönlendirilir
         if(firebaseUser !=null) {
             Intent intent = new Intent(MainActivity.this,HomeActivity.class);
             //kullanıcı bir kere giriş yaptıktan sonra geri tuşuna bastığında bir daha logine yönlendirmez

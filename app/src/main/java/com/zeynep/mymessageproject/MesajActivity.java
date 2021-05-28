@@ -22,23 +22,21 @@ import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.StorageTask;
-import com.theartofdev.edmodo.cropper.CropImage;
-import com.zeynep.mymessageproject.Adapters.ChatAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
+import com.theartofdev.edmodo.cropper.CropImage;
+
+import com.zeynep.mymessageproject.Adapters.ChatAdapter;
 import com.zeynep.mymessageproject.Model.Chat;
 import com.zeynep.mymessageproject.Model.User;
 
-
-import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -47,7 +45,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import retrofit2.http.Url;
 
 public class MesajActivity extends AppCompatActivity {
 
@@ -151,12 +148,14 @@ public class MesajActivity extends AppCompatActivity {
             }
         });
 
-        fotoekle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CropImage.activity().setAspectRatio(400,300).start(MesajActivity.this);
-            }
-        }); //fotoekle son
+       fotoekle.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               CropImage.activity().start(MesajActivity.this);
+                       //   .setAspectRatio(410,280)
+
+           }
+       });
     }
 
 
@@ -234,14 +233,14 @@ public class MesajActivity extends AppCompatActivity {
         value = reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-            for(DataSnapshot snapshot1: snapshot.getChildren()){
-                Chat chat = snapshot1.getValue(Chat.class);
-                if (chat.getAlici().equals(firebaseUser.getUid())){
-                    HashMap<String, Object> hashMap = new HashMap();
-                    hashMap.put("goruldu", true);
-                    snapshot1.getRef().updateChildren(hashMap);
+                for(DataSnapshot snapshot1: snapshot.getChildren()){
+                    Chat chat = snapshot1.getValue(Chat.class);
+                    if (chat.getAlici().equals(firebaseUser.getUid())){
+                        HashMap<String, Object> hashMap = new HashMap();
+                        hashMap.put("goruldu", true);
+                        snapshot1.getRef().updateChildren(hashMap);
+                    }
                 }
-            }
             }
 
             @Override
@@ -264,15 +263,16 @@ public class MesajActivity extends AppCompatActivity {
         reference.removeEventListener(value);
     }
 
-        ContentResolver resolver=getContentResolver();
-        MimeTypeMap mime=MimeTypeMap.getSingleton();
+    private String dosyauzantisiAl (Uri uri){
+    ContentResolver resolver=getContentResolver();
+    MimeTypeMap mime=MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(resolver.getType(uri));
-    }
+}
 
     private void resimYukle(){
         if(resimUri !=null){
             final StorageReference dosyayolu=resimyukleyolu.child(System.currentTimeMillis()
-                    +"."+dosyaUzantisiAl(resimUri));
+                    +"."+ dosyauzantisiAl(resimUri));
             yuklegorev=dosyayolu.putFile(resimUri);
             yuklegorev.continueWithTask(new Continuation() {
                 @Override
@@ -314,15 +314,15 @@ public class MesajActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-            CropImage.ActivityResult result=CropImage.getActivityResult(data);
-            resimUri=result.getUri();
-            resimYukle();
+        CropImage.ActivityResult result=CropImage.getActivityResult(data);
+        resimUri=result.getUri();
+        resimYukle();
 
 
 
-        }
     }
-}//end
+}
+//end
 
 
 

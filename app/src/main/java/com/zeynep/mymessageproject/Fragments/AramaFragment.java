@@ -63,7 +63,7 @@ public class AramaFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-               Arama(s.toString().toLowerCase());
+                Arama(s.toString().toLowerCase());
             }
 
             @Override
@@ -128,4 +128,4 @@ public class AramaFragment extends Fragment {
         });
 
 
-}}
+    }}

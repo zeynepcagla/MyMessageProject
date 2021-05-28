@@ -36,7 +36,7 @@ public class MesajFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-       View view = inflater.inflate(R.layout.fragment_mesaj, container, false);
+        View view = inflater.inflate(R.layout.fragment_mesaj, container, false);
 
         recyclerView=view.findViewById(R.id.mesajlistesirecycler);
         recyclerView.setHasFixedSize(true);
@@ -50,18 +50,18 @@ public class MesajFragment extends Fragment {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                            userList.clear();
-                            if (snapshot.exists()){
-                                for (DataSnapshot snapshot1 : snapshot.getChildren()){
-                                    Chat  chat =snapshot1.getValue(Chat.class);
-                                    if (chat.getGonderen().equals(firebaseUser.getUid())){
-                                        userList.add(chat.getAlici());
-                                    }
-                                    if (chat.getAlici().equals(firebaseUser.getUid())){
-                                        userList.add(chat.getGonderen());
-                                    }
+                        userList.clear();
+                        if (snapshot.exists()){
+                            for (DataSnapshot snapshot1 : snapshot.getChildren()){
+                                Chat  chat =snapshot1.getValue(Chat.class);
+                                if (chat.getGonderen().equals(firebaseUser.getUid())){
+                                    userList.add(chat.getAlici());
+                                }
+                                if (chat.getAlici().equals(firebaseUser.getUid())){
+                                    userList.add(chat.getGonderen());
                                 }
                             }
+                        }
                         KullaniciOku();
                     }
 
@@ -85,19 +85,19 @@ public class MesajFragment extends Fragment {
                         for (DataSnapshot snapshot1 : snapshot.getChildren()){// database deki kullanılcıların alt çocuklarını oku
                             User kullanici =snapshot1.getValue(User.class);
 
-                             for  (String id : userList){
-                                 if(kullanici.getId().equals(id) && !mKullanicilar.contains(kullanici)){
-                                     mKullanicilar.add(kullanici);
-                                     if(mKullanicilar.size() !=0){
+                            for  (String id : userList){
+                                if(kullanici.getId().equals(id) && !mKullanicilar.contains(kullanici)){
+                                    mKullanicilar.add(kullanici);
+                                    if(mKullanicilar.size() !=0){
 
-                                     }
-                                     else {
-                                         mKullanicilar.add(kullanici);
-                                     }
+                                    }
+                                    else {
+                                        mKullanicilar.add(kullanici);
+                                    }
 
-                                 }
-                             }
-                                                mKullanicilar.add(kullanici);
+                                }
+                            }
+                            mKullanicilar.add(kullanici);
 
                         }
                         //kullanıcı listesini yenile komutu

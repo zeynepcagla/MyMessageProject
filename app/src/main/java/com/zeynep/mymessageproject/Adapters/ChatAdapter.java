@@ -1,6 +1,7 @@
 package com.zeynep.mymessageproject.Adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -25,6 +27,8 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
 
     private Context mcontext;
     private List<Chat> mMesaj;
+
+    int mesajkonumu=-1;
 
 
 
@@ -85,11 +89,23 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
         holder.tarih.setText(chat.getTarih());
         Glide.with(mcontext).load(chat.getResim()).into(holder.mesajresim);
 
-      /*
+        if(chat.getResim().equals("")){
+            holder.mesajresim.setVisibility(View.GONE);
+        }
+//bir süre üzerine basılı tutulduğu zaman işlem yapar
+        holder.mesaj.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+            mesajkonumu=position;
+            notifyDataSetChanged();
 
-      holder.saat.setText(chat.getSaat());
-        holder.tarih.setText(chat.getTarih());
-*/
+    return  false;
+            }
+        });
+        if (mesajkonumu==position){
+          holder.card.setBackgroundColor(Color.parseColor("#D89B9B9B"));
+        }
+
     }
 
 
@@ -103,6 +119,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
         public ImageView profilresim,mesajgonder;
         public ImageView goruldutik,iletilditik,mesajresim;
         public TextView mesaj,tarih,saat;
+        public CardView card;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -113,6 +130,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
             goruldutik = itemView .findViewById(R.id.goruldutik);
             iletilditik = itemView .findViewById(R.id.iletilditik);
             mesajresim = itemView .findViewById(R.id.mesajresim);
+            card = itemView .findViewById(R.id.card);
 
 
         }

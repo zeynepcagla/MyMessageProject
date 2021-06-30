@@ -12,7 +12,7 @@
     <color name="gri">#979797</color>
     <color name="green">#8BC34A</color>
     <color name="yellow">#FFEB3B</color>
-
+    <color name="transparangri">#D89B9B9B</color>
     <color name="transparan">#00FFFFFF</color>
     <color name="tab_background_selected">#FFF</color>
 

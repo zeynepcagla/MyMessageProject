@@ -29,10 +29,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.theartofdev.edmodo.cropper.CropImage;
-
 import com.zeynep.mymessageproject.Adapters.ChatAdapter;
 import com.zeynep.mymessageproject.Model.Chat;
 import com.zeynep.mymessageproject.Model.User;
@@ -270,6 +270,7 @@ public class MesajActivity extends AppCompatActivity {
 }
 
     private void resimYukle(){
+        resimyukleyolu= FirebaseStorage.getInstance().getReference("Mesaj Resim");
         if(resimUri !=null){
             final StorageReference dosyayolu=resimyukleyolu.child(System.currentTimeMillis()
                     +"."+ dosyauzantisiAl(resimUri));

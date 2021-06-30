@@ -22,6 +22,24 @@
     android:gravity="center">
 
     <ImageView
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="25dp"
+        android:id="@+id/sil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:background="@drawable/sil" />
+    <ImageView
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="15dp"
+        android:id="@+id/copy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:background="@drawable/copy"/>
+
+
+    <ImageView
         android:id="@+id/goruldutik"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -33,6 +51,7 @@
         android:layout_height="wrap_content"
         android:visibility="gone"
         android:background="@drawable/iletildi"/>
+
     <ImageView
         android:id="@+id/mesajresim"
         android:layout_width="wrap_content"

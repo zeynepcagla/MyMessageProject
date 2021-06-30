@@ -104,6 +104,8 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
         });
         if (mesajkonumu==position){
           holder.card.setBackgroundColor(Color.parseColor("#D89B9B9B"));
+          holder.sil.setVisibility(View.VISIBLE);
+            holder.copy.setVisibility(View.VISIBLE);
         }
 
     }
@@ -117,7 +119,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView profilresim,mesajgonder;
-        public ImageView goruldutik,iletilditik,mesajresim;
+        public ImageView goruldutik,iletilditik,mesajresim,sil,copy;
         public TextView mesaj,tarih,saat;
         public CardView card;
 
@@ -131,6 +133,9 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
             iletilditik = itemView .findViewById(R.id.iletilditik);
             mesajresim = itemView .findViewById(R.id.mesajresim);
             card = itemView .findViewById(R.id.card);
+            sil = itemView .findViewById(R.id.sil);
+            copy = itemView .findViewById(R.id.copy);
+
 
 
         }

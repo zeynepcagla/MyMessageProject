@@ -1,5 +1,7 @@
 package com.zeynep.mymessageproject.Adapters;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -121,7 +123,16 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
                 mesajSil(position);
             }
         });
-
+    holder.copy.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            ClipboardManager clipboardManager= (ClipboardManager) mcontext.getSystemService(Context.CLIPBOARD_SERVICE);
+            ClipData clipData = ClipData.newPlainText("",holder.mesaj.getText());
+            clipboardManager.setPrimaryClip(clipData);
+            Toast.makeText(mcontext, "Kopyalandı", Toast.LENGTH_SHORT).show();
+            
+        }
+    });
     }
 
     private void mesajSil(int position) {

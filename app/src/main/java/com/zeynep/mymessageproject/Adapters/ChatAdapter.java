@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.zeynep.mymessageproject.Model.Chat;
@@ -82,6 +83,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
         holder.mesaj.setText(chat.getMesaj());
         holder.saat.setText(chat.getSaat());
         holder.tarih.setText(chat.getTarih());
+        Glide.with(mcontext).load(chat.getResim()).into(holder.mesajresim);
 
       /*
 
@@ -99,7 +101,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView profilresim,mesajgonder;
-        public ImageView goruldutik,iletilditik;
+        public ImageView goruldutik,iletilditik,mesajresim;
         public TextView mesaj,tarih,saat;
 
 
@@ -110,6 +112,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
             saat = itemView.findViewById(R.id.saat);
             goruldutik = itemView .findViewById(R.id.goruldutik);
             iletilditik = itemView .findViewById(R.id.iletilditik);
+            mesajresim = itemView .findViewById(R.id.mesajresim);
 
 
         }

@@ -69,6 +69,7 @@ public class LoginActivity extends AppCompatActivity {
                     mUser=mAuth.getCurrentUser();
                     Intent intent=new Intent(context, HomeActivity.class);
                     intent.putExtra("uid",mUser.getUid());
+
                     //kullanıcı bir kere giriş yaptıktan sonra geri tuşuna bastığında bir daha logine yönlendirmez
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);

@@ -81,17 +81,12 @@ public class HomeActivity extends AppCompatActivity {
 
                     switch (item.getItemId()) {
 
-                        case R.id.arama:
+                        case R.id.home:
                             fragment = new AramaFragment();
                             break;
 
-                        case R.id.home:
-                            fragment = new HomeFragment();
-                            break;
 
-                        case R.id.ekle:
 
-                            break;
                         case R.id.profil:
                             Intent intent =new Intent(HomeActivity.this,ProfilimActivity.class);
                             startActivity(intent);

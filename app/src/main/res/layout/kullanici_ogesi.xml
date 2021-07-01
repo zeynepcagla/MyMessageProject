@@ -15,7 +15,7 @@
             android:id="@+id/resimKullanici"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:background="@drawable/profil"
+            android:background="@drawable/profilllim"
             android:layout_marginLeft="5dp"/>
 
         <TextView

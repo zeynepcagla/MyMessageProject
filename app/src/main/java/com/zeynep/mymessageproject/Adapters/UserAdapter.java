@@ -22,6 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.zeynep.mymessageproject.MesajActivity;
 import com.zeynep.mymessageproject.Model.Chat;
 import com.zeynep.mymessageproject.Model.User;
+import com.zeynep.mymessageproject.ProfilimActivity;
 import com.zeynep.mymessageproject.R;
 
 import java.util.List;
@@ -97,6 +98,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
                 Intent intent = new Intent(mcontext, MesajActivity.class);
                 intent.putExtra("userId",kullanici.getId());
                 mcontext.startActivity(intent);
+
+
             }
         });
         if(kullanici.getImageURL().equals("default")){
